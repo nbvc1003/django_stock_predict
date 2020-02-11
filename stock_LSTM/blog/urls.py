@@ -1,6 +1,7 @@
 from django.urls import path
 from django.conf.urls import url
 from . import views
+from .views import ClassificationCreateView, ClassificationDeleteView, ClassificationListview, ClassificationUpdateView
 
 
 urlpatterns = [
@@ -12,5 +13,10 @@ urlpatterns = [
     path('post/<int:pk>/publish/', views.post_publish, name='post_publish'),
     path('post/<int:pk>/remove/', views.post_remove, name='post_remove'),
     path('post/<int:pk>/comment/', views.add_comment_to_post, name='add_comment_to_post'),
+
+    path('rnn', ClassificationListview.as_view(), name='list'),
+    path('rnn/create/', ClassificationCreateView.as_view(), name='create'),
+    path('rnn/update/<int:pk>/', ClassificationUpdateView.as_view(), name='update'),
+    path('rnn/delete/<int:pk>/', ClassificationDeleteView.as_view(), name='delete'),
 
 ]

@@ -4,6 +4,8 @@ from .models import Post
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
 
+from django.views.generic import ListView, DeleteView, CreateView, UpdateView
+from .models import Classification
 
 # Create your views here.
 def post_list(request):
@@ -70,3 +72,23 @@ def add_comment_to_post(request, pk):
     else:
         form = CommentForm()
     return render(request, 'blog/add_comment_to_post.html', {'form': form})
+
+class ClassificationListview(ListView):
+    model = Classification
+    template_name= 'blog/classification_list.html'
+    context_object_name = 'items'
+
+
+class ClassificationCreateView(CreateView):
+    model = Classification
+    fields = ['img']
+
+
+class ClassificationUpdateView(UpdateView):
+    model = Classification
+    fields = ['img']
+
+
+class ClassificationDeleteView(DeleteView):
+    model = Classification
+    success_url = '/'
