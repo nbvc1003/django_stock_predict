@@ -1,10 +1,11 @@
-{% extends "rnn/base.html" %}
+{% extends "web_rnn/base.html" %}
 {% load crispy_forms_tags %}
 
 {% block content %}
 
 <h4>New Prediction</h4>
 
+<!--actoin 값이 지정되지 않으면 현제 페이지로 전달된다. -->
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
